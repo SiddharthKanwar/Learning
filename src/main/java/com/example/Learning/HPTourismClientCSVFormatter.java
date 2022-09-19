@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 public class HPTourismClientCSVFormatter {
     public static final LinkedHashMap<String, String> keyMapper = new LinkedHashMap<>();
-    static {
+    static
+    {
         keyMapper.put("Name", "name");
         keyMapper.put("Mobile Number", "Mobile Number:");
         keyMapper.put("Address", "Address:");
@@ -19,6 +20,9 @@ public class HPTourismClientCSVFormatter {
         keyMapper.put("District","District:");
         keyMapper.put("Landmark","Landmark:");
         keyMapper.put("Post Office","Post Office:");
+        keyMapper.put("Number of Rooms", "Number of Rooms:");
+        keyMapper.put("Minimum Rent/Day", "Minimum Rent/Day:");
+        keyMapper.put("Maximum Rent/Day", "Maximum Rent/Day:");
     }
     public static Map<String, String> format(ScrapData scrapData) {
         return keyMapper.keySet().stream().map(key-> new Pair(key, scrapData.getParamOr(keyMapper.get(key), "").toString())).collect(Collectors.toMap(Pair::getName, Pair::getValue, (x, y) -> y, LinkedHashMap::new));

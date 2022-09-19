@@ -1,0 +1,30 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.seleniumhq.selenium:selenium-java:4.4.0'
+	implementation group: 'com.opencsv', name: 'opencsv', version: '3.7'
+	implementation group: 'org.jsoup', name: 'jsoup', version: '1.9.2'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '0.11.0'
+	implementation group: 'com.sendinblue', name: 'sib-api-v3-sdk', version: '6.0.0'
+
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

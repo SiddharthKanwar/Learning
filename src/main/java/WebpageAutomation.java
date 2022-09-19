@@ -21,17 +21,30 @@ public class WebpageAutomation {
 
         LinkedHashMap<Integer, List<String>> pageLinks = new LinkedHashMap<>();
         ArrayList<String> links = null;
-        for (int i = 1; i < 281; i++) {
+        for (int i = 1; i < 3; i++) {
             links = new ArrayList<>();
             driver.get("https://himachaltourism.gov.in/accommodation-result/?cat_id=2&district=select&tehsil&submit&cpage=" + i);
+
             List<WebElement> allLinks = driver.findElements(By.tagName("a"));
-            for (WebElement link : allLinks) {
+            for (WebElement link : allLinks)
+            {
                 String hyperlink = link.getAttribute("href");
-                if (hyperlink != null && hyperlink.contains("single-user-result?id=")) {
+                if (hyperlink != null && hyperlink.contains("single-user-result?id="))
+                {
                     links.add(hyperlink);
                 }
+
+                List<WebElement> allLinks1 = driver.findElements(By.tagName("homestay-Data"));
+                for (WebElement link1 : allLinks1)
+                {
+                    String hyperlink1 = link1.getAttribute("href");
+                    if (hyperlink1 != null && hyperlink.contains("single-user-result?id="))
+                    {
+                        links.add(hyperlink1);
+                    }
+
+                    pageLinks.put(i, links);
             }
-            pageLinks.put(i, links);
         }
         System.out.println(" --------------------- LINKS ----------------------------");
         System.out.println(String.join(", ", pageLinks.values().stream().map(Object::toString).toList()));
